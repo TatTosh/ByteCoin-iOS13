@@ -41,4 +41,27 @@ struct CoinManager {
 			 task.resume()
 		 }
 	}
+
+	
+	func parseJSON(_ data: Data) -> Double? {
+		   
+		   //Create a JSONDecoder
+		   let decoder = JSONDecoder()
+		   do {
+			   
+			   //try to decode the data using the CoinData structure
+			   let decodedData = try decoder.decode(CoinData.self, from: data)
+			   
+			   //Get the last property from the decoded data.
+			   let lastPrice = decodedData.rate
+			   print(lastPrice)
+			   return lastPrice
+			   
+		   } catch {
+			   
+			   //Catch and print any errors.
+			   print(error)
+			   return nil
+		   }
+	   }
 }
